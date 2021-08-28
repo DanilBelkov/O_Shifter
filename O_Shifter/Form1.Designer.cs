@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStrip_File = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStrip_File_Open = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip_File_OpenExistMap = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip_FIle_Save = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.CheckRotate = new System.Windows.Forms.ToolStripComboBox();
             this.toolStrip_Ok = new System.Windows.Forms.ToolStripButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -53,10 +56,11 @@
             this.toolStrip_File,
             this.toolStripLabel2,
             this.toolStripLabel1,
+            this.CheckRotate,
             this.toolStrip_Ok});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1084, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(837, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -65,31 +69,39 @@
             this.toolStrip_File.BackColor = System.Drawing.Color.BurlyWood;
             this.toolStrip_File.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStrip_File_Open,
+            this.toolStrip_File_OpenExistMap,
             this.toolStrip_FIle_Save});
             this.toolStrip_File.Name = "toolStrip_File";
             this.toolStrip_File.Size = new System.Drawing.Size(49, 22);
-            this.toolStrip_File.Text = "файл";
+            this.toolStrip_File.Text = "Файл";
             // 
             // toolStrip_File_Open
             // 
             this.toolStrip_File_Open.Name = "toolStrip_File_Open";
-            this.toolStrip_File_Open.Size = new System.Drawing.Size(131, 22);
-            this.toolStrip_File_Open.Text = "открыть";
+            this.toolStrip_File_Open.Size = new System.Drawing.Size(196, 22);
+            this.toolStrip_File_Open.Text = "Открыть";
             this.toolStrip_File_Open.Click += new System.EventHandler(this.ToolStrip_File_Open_Click);
+            // 
+            // toolStrip_File_OpenExistMap
+            // 
+            this.toolStrip_File_OpenExistMap.Name = "toolStrip_File_OpenExistMap";
+            this.toolStrip_File_OpenExistMap.Size = new System.Drawing.Size(196, 22);
+            this.toolStrip_File_OpenExistMap.Text = "Открыть из бызы карт";
+            this.toolStrip_File_OpenExistMap.Click += new System.EventHandler(this.ToolStrip_File_OpenExistMap_Click);
             // 
             // toolStrip_FIle_Save
             // 
             this.toolStrip_FIle_Save.Name = "toolStrip_FIle_Save";
-            this.toolStrip_FIle_Save.Size = new System.Drawing.Size(131, 22);
-            this.toolStrip_FIle_Save.Text = "сохранить";
+            this.toolStrip_FIle_Save.Size = new System.Drawing.Size(196, 22);
+            this.toolStrip_FIle_Save.Text = "Сохранить";
             this.toolStrip_FIle_Save.Click += new System.EventHandler(this.ToolStrip_FIle_Save_Click);
             // 
             // toolStripLabel2
             // 
-            this.toolStripLabel2.Margin = new System.Windows.Forms.Padding(300, 1, 0, 2);
+            this.toolStripLabel2.Margin = new System.Windows.Forms.Padding(50, 1, 0, 2);
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(110, 22);
-            this.toolStripLabel2.Text = "Размер фрагмента";
+            this.toolStripLabel2.Size = new System.Drawing.Size(173, 22);
+            this.toolStripLabel2.Text = "Размер фрагмента в пикселях";
             // 
             // toolStripLabel1
             // 
@@ -100,12 +112,24 @@
             this.toolStripLabel1.Size = new System.Drawing.Size(116, 22);
             this.toolStripLabel1.Text = "Кол-во фрагментов";
             // 
+            // CheckRotate
+            // 
+            this.CheckRotate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CheckRotate.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.CheckRotate.Items.AddRange(new object[] {
+            "Без переворотов",
+            "С переворотами"});
+            this.CheckRotate.Margin = new System.Windows.Forms.Padding(80, 0, 1, 0);
+            this.CheckRotate.Name = "CheckRotate";
+            this.CheckRotate.Size = new System.Drawing.Size(120, 25);
+            this.CheckRotate.ToolTipText = "Выбирете тип фрагментации ";
+            // 
             // toolStrip_Ok
             // 
             this.toolStrip_Ok.BackColor = System.Drawing.Color.BurlyWood;
             this.toolStrip_Ok.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStrip_Ok.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStrip_Ok.Margin = new System.Windows.Forms.Padding(100, 1, 0, 2);
+            this.toolStrip_Ok.Margin = new System.Windows.Forms.Padding(50, 1, 0, 2);
             this.toolStrip_Ok.Name = "toolStrip_Ok";
             this.toolStrip_Ok.Size = new System.Drawing.Size(74, 22);
             this.toolStrip_Ok.Text = "Применить";
@@ -116,10 +140,10 @@
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1084, 586);
+            this.pictureBox1.Size = new System.Drawing.Size(837, 586);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
@@ -130,14 +154,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 25);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1084, 586);
+            this.panel1.Size = new System.Drawing.Size(837, 586);
             this.panel1.TabIndex = 2;
             // 
             // Numeric_Count
             // 
-            this.Numeric_Count.Location = new System.Drawing.Point(685, 0);
+            this.Numeric_Count.Location = new System.Drawing.Point(503, 5);
             this.Numeric_Count.Maximum = new decimal(new int[] {
-            48,
+            1000,
             0,
             0,
             0});
@@ -147,26 +171,38 @@
             // 
             // Numeric_Size
             // 
-            this.Numeric_Size.Location = new System.Drawing.Point(470, 0);
+            this.Numeric_Size.Location = new System.Drawing.Point(280, 5);
             this.Numeric_Size.Maximum = new decimal(new int[] {
-            60,
+            1000,
+            0,
+            0,
+            0});
+            this.Numeric_Size.Minimum = new decimal(new int[] {
+            40,
             0,
             0,
             0});
             this.Numeric_Size.Name = "Numeric_Size";
             this.Numeric_Size.Size = new System.Drawing.Size(53, 20);
             this.Numeric_Size.TabIndex = 4;
+            this.Numeric_Size.Value = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FloralWhite;
-            this.ClientSize = new System.Drawing.Size(1084, 611);
+            this.ClientSize = new System.Drawing.Size(837, 611);
             this.Controls.Add(this.Numeric_Size);
             this.Controls.Add(this.Numeric_Count);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Перевертыши";
             this.toolStrip1.ResumeLayout(false);
@@ -193,6 +229,8 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.NumericUpDown Numeric_Count;
         private System.Windows.Forms.NumericUpDown Numeric_Size;
+        private System.Windows.Forms.ToolStripComboBox CheckRotate;
+        private System.Windows.Forms.ToolStripMenuItem toolStrip_File_OpenExistMap;
     }
 }
 

@@ -13,11 +13,12 @@ namespace O_Shifter
         public Point Coordinate { get; private set; }
         public Size Size { get; private set; }
 
-        public Fragment(Point cordinate, Bitmap image, Size size)
+        public Fragment(Point cordinate, Bitmap image, Size size, RotateFlipType rotateFlipType)
         {
             Coordinate = cordinate;
             Size = size;
             Image = image;
+            Image.RotateFlip(rotateFlipType);
             Graphics g = Graphics.FromImage(Image);
             g.DrawRectangle(new Pen(Color.Black, 2), new Rectangle(0, 0, Size.Width, Size.Height));
             g.Dispose();
